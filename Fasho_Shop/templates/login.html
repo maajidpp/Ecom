@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <!-- CSS only -->
+
+
+</head>
+<body>
+<div class="col-4"></div>
+<div class="col-4 border border-primary ms-5 mt-5">
+    <b>Admin Login & user login</b>
+<form action="" method="post" class="ps-5 pt-5 pb-5 pe-5 ">
+    {% csrf_token %}
+    <label for="">username:</label>
+    <input type="text" name="username"  placeholder="enter your username" class="form-control"><br>
+
+    <label for="">Password:</label>
+    <input type="password" name="password" placeholder="enter your password" class="form-control"><br>
+
+    <input type="submit" value="Login" class="btn btn-primary">
+    <a class="" href="{%  url 'ecomapp:register'  %}">Register</a>
+
+</form></div>
+<div class="col-4"></div>
+{%for msg in messages%}
+{{msg}}
+{%endfor%}
+</body>
+</html>

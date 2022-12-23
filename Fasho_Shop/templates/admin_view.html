@@ -1,0 +1,50 @@
+ <html>
+ <charset="utf-8">
+ <head>
+    <title>products</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+</head>
+
+<body>
+	<h1>Product Details</h1>
+	<table class="table">
+	<thead>
+		<tr>
+			<th>product</th>
+     		<th>Name</th>
+			<th>Description</th>
+<th>Price</th>
+<th>EDIT</th>
+<th>DELETE</th>
+
+			
+		</tr>
+	</thead>
+	<tbody>
+	{% for b in prod %}
+	<tr>
+	   <td>{% if b.name %}<img src="{{b.image.url}}" alt="" style="width:100px">
+		{% else %}
+		
+		<span class="text-muted">no  </span>
+		{% endif %}
+		
+		</td>
+		
+		<td>{{b.name}}</td>
+		<td>{{b.description}}</td>
+
+		<td>{{b.price}}</td>
+		<td><a href="{% url 'ecomapp:update_pro' b.pk %}" class="btn btn-danger">update</a></td>
+		<td><a href="{% url 'ecomapp:delete_pro' b.pk %}" class="btn btn-danger">Delete</a></td>
+
+
+	</tr>
+	
+	{% endfor %}
+	<b>ADD MOVIE<a href="{% url 'ecomapp:add_pro'  %}" class="btn btn-danger">add</a></b>
+</body>
+	 
+</html>

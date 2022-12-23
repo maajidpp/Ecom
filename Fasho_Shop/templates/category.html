@@ -1,0 +1,75 @@
+{%  extends  'base.html'  %}
+{%  load static  %}
+
+{% block metadescription  %}
+<!--{%   if category   %}-->
+<!--        {{product.description|truncatewords:155}}-->
+<!--{% else %}-->
+        Welcome to the Myshox world. Explore your Fashions
+<!--{%  endif  %}-->
+{%  endblock  %}
+
+{%  block title  %}
+<!--    {%  if category  %}-->
+<!--        {{category.name}}-->
+<!--    {%  else  %}-->
+<!--        See our new collections and new styles.-->
+<!--    {%   endif  %}-->
+{%  endblock  %}
+
+{%  block content  %}
+    {%  if product  %}
+        <div>
+            <div  class="row  my-row-class">
+                <div  class="mx_auto">
+                <p><a  href="{%  url  'ecomapp:allProdCat'  %}">Our Collections</a></p>
+                    </div>
+            </div>
+        </div>
+    {%  endif  %}
+<!--<div>-->
+<!--    {%  if  category  %}-->
+<!--            <img class= "my_image"  src="{{category.image.url}}"  alt="{{category.name}}"  style="width:100%;height:500px;">-->
+<!--</div>-->
+<!--<br>-->
+<!--<div>-->
+<!--    <h1 class="text-center   my_title">{{category.name}}</h1>-->
+<!--    <p class=" text-justify">{{category.description}}</p>-->
+<!--</div>-->
+<!--    {%  else  %}-->
+<!--<div>-->
+                <img  class="my_image   my_image_padding" src="{%  static  'img/GXGHXJG.png'  %}"  alt="Our Products"  style="width:100%;height:500px;">
+</div>
+<br>
+<div>
+    <h1 class="text-center  my_title">Fash-O Fashion Products</h1>
+    <p class="text-justify">"Fashion ecommerce is the selling and buying of fashion and apparel online. The fashion ecommerce industry is a highly competitive space where stores will try various marketing methods to stand out</p>
+</div>
+<!--    {%  endif  %}-->
+<div  class="container">
+    <div  class="row  mx_auto">
+        {%  for product in  products  %}
+        <div  class="my_bottom_margin  col-9  col-sm-12  col-md-12  col-lg-4">
+            <div  class="card  text-center"  style="min-width:16rem;">
+                <a href="{% url 'ecomapp:ProCatDetail' product.id %}"><img class="card-img-top   my_image"  src="{{product.image.url}}"  style="height:300px;"  alt="{{product.name}}"></a>
+                <div  class="card-body"  style="color:maroon;">
+                    <h4>{{product.name}}</h4>
+                    <p>{{product.price}}</p>
+                </div>
+            </div>
+        </div>
+        {%   endfor  %}
+    </div>
+    <div class="mx_auto">
+        {%   if products.paginator.num_pages  >  1  %}
+
+        <div  class="text-center">
+            {%  for pg in products.paginator.page_range   %}
+            <a  href="?page={{pg}}"    class="btn btn-light   btn-sm    {%  if products.number == pg  %} active  {%   endif   %}">{{pg}}</a>
+            {%   endfor  %}
+        </div>
+        {%   endif   %}
+    </div>
+</div>
+
+{%  endblock  %}
